@@ -1,18 +1,28 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+  layout "react"
+  before_action :authenticate_user!
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
   def new
-    super
+    @user = User.new
+    @data = {:user => @user}
+    # super
   end
 
   # POST /resource
   def create
-    # debugger
-    super
+    build_resource(sign_up_params)
+    resource.save
+    yield resource if block_given?
+    if resource.persisted?
+      render json: {code: 200, data: resource, msg: "record has been saved!"}
+    else
+      render json: {code: 500, data: sign_up_params, msg: resource.errors.full_messages}
+    end
   end
 
   # GET /resource/edit
