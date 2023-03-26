@@ -29,6 +29,14 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 RSpec.configure do |config|
   # Ensure that if we are running js tests, we are using latest webpack assets
   # This will use the defaults of :js and :server_rendering meta tags
@@ -74,6 +82,7 @@ RSpec.configure do |config|
 
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
+  config.include FactoryBot::Syntax::Methods
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 end
