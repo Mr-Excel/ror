@@ -19,6 +19,7 @@ module Lms
     config.time_zone = "Asia/Karachi"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    # config.action_view.javascript_expansions[:defaults] = %w(jquery.min jquery_ujs)
     config.generators do |g|
       g.test_framework(
         :rspec,

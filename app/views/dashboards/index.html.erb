@@ -1,0 +1,8 @@
+<h1>Welcome</h1>
+<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+
+<script>
+// console.log($)
+// fetch("<%= destroy_user_session_path %>",{method: "delete"},{headers: { 'X-CSRF-Token': '<%= session[:_csrf_token] %>'}})
+console.log(200, "<%= destroy_user_session_path %>")
+</script>

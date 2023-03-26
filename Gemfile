@@ -6,6 +6,12 @@ ruby "3.0.0"
 # custom gems
 gem "devise"
 gem "pg"
+gem "jquery"
+gem "jquery-rails"
+
+# react resources
+gem "shakapacker", "= 6.6"
+gem "react_on_rails", "= 13.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
@@ -76,3 +82,4 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
