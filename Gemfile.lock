@@ -186,7 +186,7 @@ GEM
       zeitwerk (~> 2.5)
     rainbow (3.1.1)
     rake (13.0.6)
-    react_on_rails (13.3.0)
+    react_on_rails (13.3.1)
       addressable
       connection_pool
       execjs (~> 2.5)
@@ -223,7 +223,7 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    shakapacker (6.6.0)
+    shakapacker (6.5.5)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
       railties (>= 5.2)
@@ -281,11 +281,11 @@ DEPENDENCIES
   pg
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
-  react_on_rails (= 13.3)
+  react_on_rails (= 13.3.1)
   redis (~> 4.0)
   rspec-rails
   selenium-webdriver
-  shakapacker (= 6.6)
+  shakapacker (= 6.5.5)
   sprockets-rails
   sqlite3 (~> 1.4)
   stimulus-rails

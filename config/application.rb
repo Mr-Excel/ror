@@ -29,5 +29,7 @@ module Lms
         routing_specs: false,
         )
     end
+    # Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'pack')
+
   end
 end

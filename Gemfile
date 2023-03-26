@@ -10,8 +10,8 @@ gem "jquery"
 gem "jquery-rails"
 
 # react resources
-gem "shakapacker", "= 6.6"
-gem "react_on_rails", "= 13.3"
+gem "shakapacker", "6.5.5"
+gem "react_on_rails", "13.3.1" # Use the latest and the exact version
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.4", ">= 7.0.4.3"
