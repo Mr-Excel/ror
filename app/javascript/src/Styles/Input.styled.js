@@ -44,7 +44,6 @@ export const Input = styled.input`
 `
 
 export const IconSpan = styled.span`
-  
   right: 10px;
   top: 20px;
   font-size: 15px;

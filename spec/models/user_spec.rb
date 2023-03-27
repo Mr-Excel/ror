@@ -2,6 +2,17 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
+  # Coving Tests in this file
+  # ** Creation of Object
+  # ** Methods
+  # ** Validations
+  # ** Enums
+  # ** Scope
+  # ** Associations 
+  # ** Indexing
+
+
+
   # registrations checing
   describe "registrations" do
     it "should create a new user" do 
@@ -56,6 +67,95 @@ RSpec.describe User, type: :model do
         expect(new_user).not_to be_valid
       end
     end
+  end
+
+  # Enums Testing
+  describe "enums" do 
+    it { should define_enum_for(:gender) }
+  end
+  
+  # Scope Testing
+  describe "scopes" do 
+    it "should return all active teams" do 
+      user = create(:user)
+      teams = create_list(:team, 2)
+      teams_2 = create_list(:team, 3)
+      user_teams = teams.map { |team| create(:user_team, user: user, team: team) }
+      user_teams_2 = teams_2.map { |team| create(:user_team, user: user, team: team, is_active: false) }
+      expect(User.teams(1).count).to eq(2)
+    end
+
+    it "should return in active teams" do 
+      user = create(:user)
+      teams = create_list(:team, 2)
+      teams_2 = create_list(:team, 3)
+      user_teams = teams.map { |team| create(:user_team, user: user, team: team) }
+      user_teams_2 = teams_2.map { |team| create(:user_team, user: user, team: team, is_active: false) }
+      expect(User.teams(0).count).to eq(3)
+    end
+
+
+    it "should return in all associated teams" do 
+      user = create(:user)
+      teams = create_list(:team, 5)
+      user_teams = teams.map { |team| create(:user_team, user: user, team: team) }
+      expect(User.teams.count).to eq(teams.count)
+    end
+
+    it "should use scope for columns selection" do 
+      user = create(:user)
+      teams = create_list(:team, 5)
+      user_teams = teams.map { |team| create(:user_team, user: user, team: team) }
+      expect(User.select_all.size).to eq(5)
+    end
+
+    # checking male scope
+    it "should return only males" do 
+      create(:user, :gender => 0)
+      create(:user, :gender => 0)
+      create(:user, :gender => 0)
+      create(:user, :gender => 0)
+      create(:user, :gender => 0)
+      create(:user, :gender => 0)
+      create(:user, :gender => 1)
+      create(:user, :gender => 1)
+      create(:user, :gender => 1)
+      create(:user, :gender => 1)
+      male_counts = User.where(:gender => 0).count
+      male_counts_from_scope = User.males.count
+      expect(male_counts).to eq(male_counts_from_scope)
+    end
+    # checking female scope
+    it "should return only females" do 
+      create(:user, :gender => 0)
+      create(:user, :gender => 0)
+      create(:user, :gender => 0)
+      create(:user, :gender => 0)
+      create(:user, :gender => 0)
+      create(:user, :gender => 0)
+      create(:user, :gender => 1)
+      create(:user, :gender => 1)
+      create(:user, :gender => 1)
+      create(:user, :gender => 1)
+      male_counts = User.where(:gender => 1).count
+      male_counts_from_scope = User.females.count
+      expect(male_counts).to eq(male_counts_from_scope)
+    end
+  end
+  
+
+  # Indexing Verifying
+  describe "indexing" do 
+    it { should have_db_index(:id) }
+    it { should have_db_index(:gender) }
+    it { should have_db_index(:email) }
+    it { should have_db_index(:created_at) }
+  end
+
+  # Associations Testing
+  describe "associations" do
+    it { should have_many(:user_teams) }
+    it { should have_many(:teams).through(:user_teams) }
   end
 end
  

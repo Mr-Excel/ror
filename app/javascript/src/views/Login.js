@@ -11,8 +11,8 @@ import { ToastContainer, toast } from 'react-toastify';
 const LoginPage = (props) => {
   
   const [user,setUser] = useState(props.user)
-  const [firstName, setFirstName] = useState('Ahmad');
-  const [lastName, setLastName] = useState('Raza');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('aaa@g.com');
   const [password, setPassword] = useState('123456');
   const [gender,setGender] = useState("1")
