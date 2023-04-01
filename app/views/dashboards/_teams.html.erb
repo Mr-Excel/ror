@@ -1,0 +1,11 @@
+<div class="mb-3 pt-5 pb-5">
+<% Team.all.each do |team| %>
+  <% assigned = user.teams.include?(team) %>
+  
+    <%= f.fields_for :user_teams, assigned ? user.user_teams.find_by(team_id: team.id) : UserTeam.new do |team_fields| %>
+    <%= react_component("Teams", props: {id: team.id, name: team.name}, prerender: false) %>
+  <% end %>
+  <br/>
+<% end %>
+
+</div>

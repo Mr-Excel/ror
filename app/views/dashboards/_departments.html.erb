@@ -1,0 +1,11 @@
+
+<div class="mb-3 pb-5 pt-5">
+<% Department.all.each do |department| %>
+    <% assigned = user.departments.include?(department) %>
+     <%= f.fields_for :user_departments, assigned ? user.user_departments.find_by(department_id: department.id) : UserDepartment.new do |department_fields| %>
+      <%= department_fields.check_box :department_id, {}, department.id, nil %>
+      <%= department_fields.label :department_id, department.name, class: "form-check-label" %>
+    <% end %>
+    <br/>
+  <% end %>
+</div>

@@ -1,0 +1,8 @@
+
+  <%= f.fields_for :images do |image_fields| %>
+     <%= image_fields.label :image_data %>
+    <%= image_fields.file_field :image_data %>
+    <%#= image_fields.text_field :image_data%>
+    <%= image_fields.label :is_active %>
+    <%= image_fields.check_box :is_active %>
+  <% end %>

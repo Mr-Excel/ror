@@ -11,7 +11,7 @@ def run(process)
   args = [*ARGV]
   args.shift
   puts "Using #{process}"
-  exec "#{process} start -f Procfile.dev"#, args.join(" ")
+  exec "#{process} start -f Procfile.dev", args.join(" ")
 rescue Errno::ENOENT
   warn <<~MSG
     ERROR:

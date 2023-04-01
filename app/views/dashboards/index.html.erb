@@ -1,8 +1,59 @@
 <h1>Welcome</h1>
-<%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+
+<%= link_to "All Users", all_users_path %>
+<%= form_for @user, url: "#", remote: true do |f| %>
+<%= render partial: 'tabs', locals: {f: f, user: @user } %>
+<%
+=begin%>
+ <%= f.submit %> 
+<%
+=end%>
+  
+  <button id="save-record">Save</button>
+<% end %>
 
 <script>
-// console.log($)
-// fetch("<%= destroy_user_session_path %>",{method: "delete"},{headers: { 'X-CSRF-Token': '<%= session[:_csrf_token] %>'}})
-console.log(200, "<%= destroy_user_session_path %>")
+
+
+function activaTab(e){
+  const tab = e.dataset ? e.dataset.tab : e
+  window.jQuery('.nav-tabs a[href="#' + tab + '"]').tab('show');
+};
+
+
+window.addEventListener("load",function(){  
+
+ const $ = window.jQuery
+ activaTab(window.location.hash.replace("#",""))
+  $("#save-record").on('click', function(e) {
+
+    const token = 
+      document.querySelector('[name=csrf-token]').content
+  
+    e.preventDefault();
+    var form = $("#new_user");
+    var url = form.attr('action');
+    var method = form.attr('method');
+    var data = form.serialize();
+
+ $.ajax({
+      url: "<%= c_edit_users_path %>",
+      method: method,
+      data: data,
+      headers: {
+        "X-CSRF-TOKEN": token,
+      },
+      dataType: 'json',
+      success: function(response) {
+        console.log("success",response)
+      },
+      error: function(xhr, status, error) {
+        console.log("error",xhr,status,error)
+      }
+    }); 
+    
+  }); 
+
+})
+
 </script>

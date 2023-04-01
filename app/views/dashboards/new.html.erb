@@ -1,0 +1,65 @@
+<h1>Welcome</h1>
+
+
+<%= link_to "All Users", all_users_path %>
+<%= form_for @user, url: "#", remote: true do |f| %>
+<%= render partial: 'tabs', locals: {f: f, user: @user } %>
+    <button id="save-record">Save</button>
+<% end %>
+<%= @user %>
+<%= image_tag url_for(@find.images.last.image_data) %>
+
+
+<script>
+
+
+function activaTab(e){
+  const tab = e.dataset ? e.dataset.tab : e
+
+  window.jQuery('.nav-tabs a[href="#' + tab + '"]').tab('show');
+};
+
+
+window.addEventListener("load",function(){
+  activaTab(window.location.hash.replace("#",""))  
+ const $ = window.jQuery
+ const token = document.querySelector('[name=csrf-token]').content
+  $("#save-record").on('click', function(e) {
+    e.preventDefault();
+    var form = $("#new_user");
+    var url = form.attr('action');
+    var method = form.attr('method');
+    const file = $("#user_images_attributes_0_image_data")[0]
+    var attachment = file.files[0];
+    var data = new FormData(form[0])//form.serialize();
+
+//    for (var [key, value] of data.entries()) { 
+  //    if(typeof value != 'string'){
+    //    console.log(key, value[0], typeof value);
+//      }
+  //    console.log(key, value, typeof value);
+    //}
+    
+   window.axios.post("<%= new_users_path %>",data,{ headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')} }).then((r)=>{
+      console.log(r)
+    })
+   
+/*
+ $.ajax({
+      url: "<%= new_users_path %>",
+      method: method,
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      data: data,
+      //dataType: 'json',
+      success: function(response) {
+        console.log("success",response)
+      },
+      error: function(xhr, status, error) {
+        console.log("error",xhr,status,error)
+      }
+    }); 
+  */
+  }); 
+})
+
+</script>

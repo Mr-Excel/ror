@@ -1,0 +1,2 @@
+module Users::GenericHelper
+end

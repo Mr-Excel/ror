@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
   describe "registrations" do
     it "should create a new user" do 
       before_count = User.count
-      user = create(:user, :gender => 1)
+      user = create(:user)
       after_count = User.count
       expect(before_count+1).to be(after_count)
     end
@@ -52,10 +52,10 @@ RSpec.describe User, type: :model do
   # validations testing
   describe "validations" do
     context "should validate all attributes while creating a new user" do
-      # creating a user
+      # creating a user variable with help of FactoryBot
       let!(:user) { create(:user) }
 
-      # validating not null check
+      # validating not null check with help of shoulda-matcher
       it { should validate_presence_of(:gender) }
       it { should validate_presence_of(:email) }
       it { should validate_presence_of(:first_name) }
@@ -63,7 +63,7 @@ RSpec.describe User, type: :model do
 
       # checking email to be unique and present
       it "requires email to be unique" do
-        new_user = build(:user, email: user.email)
+        new_user = create(:user, email: user.email)
         expect(new_user).not_to be_valid
       end
     end

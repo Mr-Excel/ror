@@ -1,0 +1,43 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item" data-tab="tab1" data-toggle="tab" onclick="activaTab(this)">
+    <a class="nav-link active" href="#tab1" data-toggle="tab">Basic Information</a>
+  </li>
+  <li class="nav-item" data-tab="tab2" data-toggle="tab" onclick="activaTab(this)">
+    <a class="nav-link" href="#tab2" data-toggle="tab">Roles</a>
+  </li>
+  <li class="nav-item" data-tab="tab3"  data-toggle="tab"onclick="activaTab(this)">
+    <a class="nav-link" href="#tab3" data-toggle="tab">Teams</a>
+  </li>
+  <li class="nav-item" data-tab="tab4"  data-toggle="tab"onclick="activaTab(this)">
+    <a class="nav-link" href="#tab4" data-toggle="tab">Insurance Card Details</a>
+  </li>
+  <li class="nav-item" data-tab="tab5"  data-toggle="tab"onclick="activaTab(this)">
+    <a class="nav-link" href="#tab5" data-toggle="tab">Departments</a>
+  </li>
+  <li class="nav-item" data-tab="tab6"  data-toggle="tab"onclick="activaTab(this)">
+    <a class="nav-link" href="#tab6" data-toggle="tab">Upload Image</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div id="tab1" class="container tab-pane active">
+
+    <%= render partial: 'users', locals: {f: f, user: user } %>
+  </div>
+  <div id="tab2" class="container tab-pane">
+
+    <%= render partial: 'roles', locals: {f: f, user: user } %>
+  </div>
+  <div id="tab3" class="container tab-pane">
+    <%= render partial: 'teams', locals: {f: f, user: user } %>
+  </div>
+  <div id="tab4" class="container tab-pane">
+    <%= render partial: 'dependents', locals: {f: f, user: user } %>
+  </div>
+  <div id="tab5" class="container tab-pane">
+    <%= render partial: 'departments', locals: {f: f, user: user } %>
+  </div>
+  <div id="tab6" class="container tab-pane">
+    <%= render partial: 'images', locals: {f: f, user: user } %>
+  </div>
+</div>

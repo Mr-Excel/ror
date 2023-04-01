@@ -18,7 +18,7 @@ module Lms
     #
     config.time_zone = "Asia/Karachi"
     # config.eager_load_paths << Rails.root.join("extras")
-
+    config.build_production_command = "RAILS_ENV=production NODE_ENV=production bin/webpacker"
     # config.action_view.javascript_expansions[:defaults] = %w(jquery.min jquery_ujs)
     config.generators do |g|
       g.test_framework(
@@ -26,7 +26,6 @@ module Lms
         fixture: false,
         view_specs: false,
         helper_specs: false,
-        routing_specs: false,
         )
     end
     # Rails.application.config.assets.paths << Rails.root.join('app', 'javascript', 'pack')

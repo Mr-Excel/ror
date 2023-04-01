@@ -17,7 +17,12 @@ class Users::SessionsController < Devise::SessionsController
   # DELETE /resource/sign_out
   def destroy
     sign_out @user
-    redirect_to new_user_session_path
+    debugger
+    if current_user.nil?
+      render json: {code: 200, msg: "user has been logged out", data: []}
+    else
+      render json: {code: 500, msg: "error while doing logout", data: []}
+    end
     # super
   end
 

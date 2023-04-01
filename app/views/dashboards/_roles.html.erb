@@ -1,0 +1,11 @@
+
+<div class="mb-3 pb-5 pt-5">
+<% Role.all.each do |role| %>
+    <% assigned = user.roles.include?(role) %>
+     <%= f.fields_for :user_roles, assigned ? user.user_roles.find_by(role_id: role.id) : UserRole.new do |role_fields| %>
+      <%= role_fields.check_box :role_id, {}, role.id, nil %>
+      <%= role_fields.label :role_id, role.name, class: "form-check-label" %>
+    <% end %>
+    <br/>
+  <% end %>
+</div>
